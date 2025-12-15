@@ -83,6 +83,24 @@ function backup
     cp $argv[1] $argv[1].backup-(date +%Y%m%d-%H%M%S)
 end
 
+# Get a random quote
+function quote
+    curl -s https://api.quotable.io/random | jq -r '"\(.content)\n  — \(.author)"'
+end
+
+# Show system information
+function sysinfo
+    echo "🖥️  System Information"
+    echo "─────────────────────"
+    echo "Kernel: "(uname -r)
+    echo "Uptime: "(uptime -p)
+    echo "Packages: "(pacman -Q | wc -l)" (pacman)"
+    echo "Shell: $SHELL"
+    echo "CPU: "(lscpu | grep "Model name" | sed 's/Model name: *//')
+    echo "Memory: "(free -h | awk '/^Mem:/ {print $3 "/" $2}')
+    echo "Disk: "(df -h / | awk 'NR==2 {print $3 "/" $2 " (" $5 ")"}')
+end
+
 # Aliases for basic commands
 
 alias update=sys_update
