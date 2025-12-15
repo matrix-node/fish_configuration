@@ -30,7 +30,8 @@ function sys_update
     printf "=== Updating the system... ==="
     sleep 3
 
-    sudo pacman -Sy 
+    sudo pacman -Sy
+    sudo yay -Sy
 
     printf "=== Finished Updating the System! ==="
 end
@@ -39,7 +40,8 @@ function sys_upgrade
     printf "=== Ugrading the system... ==="
     sleep 3
 
-    sudo pacman -Syu 
+    sudo pacman -Syu
+    sudo yay -Syu
 
     printf "=== Finished Upgrading the System! ==="
 end
@@ -50,4 +52,4 @@ alias search='sudo pacman -Ss'
 alias searchy='yay -Ss'
 alias d=docker
 alias drit='docker run -it'
-alias weather='curl http://wttr.in/kenya'
+alias weather='curl wttr.in/kenya'
